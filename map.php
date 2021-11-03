@@ -24,13 +24,13 @@ if (!file_exists($path)) {
 //Make sure our filename isn't too long
 $fullWritePath = getcwd() . "/" . $path . "/";
 $availLength = 250 - strlen($fullWritePath);
-$startPos = strlen($cacheID) - $availLength;
+$startPos = strlen($img) - $availLength;
 if ($startPos < 0)
     $startPos = 0;
-$cacheID = substr($cacheID, $startPos);
+$cacheID = substr($img, $startPos);
 
 //Fetch and cache the file if its not already cached
-$path = $path . "/" . $cacheID . ".png";
+$path = $path . "/" . $cacheID . ".jpg";
 if (!file_exists($path)) {
     file_put_contents($path, fopen($url, 'r'));
 }

@@ -1,8 +1,8 @@
 <?php
+include ("common.php");
 $config = include('config.php');
 $bingKey = $config['bingAPIKey'];
 $ipinfoKey = $config['ipinfoKey'];
-include ("common.php");
 ?>
 <html>  
   <head>  
@@ -10,7 +10,6 @@ include ("common.php");
   </head>  
   <body>  
     <?php
-
     $useLoc = geolocateByIP(getVisitorIP(), $ipinfoKey);
  
     if (isset($_POST['query'])) {
@@ -68,8 +67,11 @@ if(isset($useLoc))
       $mapType = $_POST['maptype'];
     }
 
-    $mapInfo = getDataForLocation($useLoc, $mapType, $zoomLevel, $bingKey);    
+    $mapInfo = getDataForLocation($useLoc, $mapType, $zoomLevel, $bingKey);
     echo "<img src='" . $mapInfo->img . "'>";
+    echo "<!--";
+    print_r($mapInfo);
+    echo "-->";
 }  
 ?>  
 </body>  

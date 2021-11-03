@@ -42,14 +42,36 @@ function getVisitorIP()
   {
       $visitorIP = $_SERVER['HTTP_CLIENT_IP'] ? $_SERVER['HTTP_CLIENT_IP'] : ($_SERVER['HTTP_X_FORWARDED_FOR'] ? $_SERVER['HTTP_X_FORWARDED_FOR'] : $_SERVER['REMOTE_ADDR']); 
   }
+  foreach ($_SERVER as $key=>$val )
+       {
+         echo "<li>".$key.":" .$val."</li>\r\n";
+        }
+
   return $visitorIP;
+}
+
+function get_request_headers() {
+	//Cross platform way to get request headers, thanks to https://stackoverflow.com/a/20164575/8216691
+	$request_headers = [];
+	if (!function_exists('getallheaders')) {
+	    foreach ($_SERVER as $name => $value) {
+	        /* RFC2616 (HTTP/1.1) defines header fields as case-insensitive entities. */
+	        if (strtolower(substr($name, 0, 5)) == 'http_') {
+	            $headers[str_replace(' ', '-', ucwords(strtolower(str_replace('_', ' ', substr($name, 5)))))] = $value;
+	        }
+	    }
+	    $request_headers = $headers;
+	} else {
+	    $request_headers = getallheaders();
+	}
+	return $request_headers;
 }
 
 function geolocateByIP($ip, $ipinfoKey)
 {
   //Make the request to an API endpoint
   $ch = curl_init();
-  $the_query = "http://ipinfo.io/" . $ip . "?token=" . $ipinfokey;
+  $the_query = "http://ipinfo.io/" . $ip . "?token=" . $ipinfoKey;
   curl_setopt($ch, CURLOPT_URL, $the_query);
   curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
@@ -81,14 +103,14 @@ function getDataForLocation($useLoc, $imagerySet, $zoomLevel, $bingKey)
     $imageryBaseURL = "http://dev.virtualearth.net/REST/v1/Imagery/Map";  
     $centerPoint = $latitude.",".$longitude;  
     $pushpin = $centerPoint.";4;ID";
-    $img = $imageryBaseURL."/".$imagerySet."/".$centerPoint."/".$zoomLevel."?pushpin=".$pushpin."&mapSize=1024,768&key=".$bingKey;
-    $img = "map.php?img=" . base64url_encode($img);
+    $imgOrig = $imageryBaseURL."/".$imagerySet."/".$centerPoint."/".$zoomLevel."?pushpin=".$pushpin."&mapSize=1024,768&key=".$bingKey;
+    $img = "map.php?img=" . base64url_encode($imgOrig);
 
     $data = (object) [
       'latitude' => (string) $latitude,
       'longitude' => (string) $longitude,
-      'img' => $img,
-      'zoomLevel' => $zoomLevel
+      'zoomLevel' => $zoomLevel,
+      'img' => $img
     ];
     return $data;
   } 
