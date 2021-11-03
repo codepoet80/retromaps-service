@@ -29,7 +29,7 @@ function getVisitorIP()
 {
   $serverIP = explode('.',$_SERVER['SERVER_ADDR']);
   $localIP  = explode('.',$_SERVER['REMOTE_ADDR']);
-  $isLocal = ( 
+  $isLocal = ( ($_SERVER['SERVER_NAME'] == 'localhost') ||
     ($serverIP[0] == $localIP[0]) && 
     (in_array($serverIP[0],array('192') ) ||
     in_array($serverIP[0],array('127') ) ) 
@@ -42,10 +42,6 @@ function getVisitorIP()
   {
       $visitorIP = $_SERVER['HTTP_CLIENT_IP'] ? $_SERVER['HTTP_CLIENT_IP'] : ($_SERVER['HTTP_X_FORWARDED_FOR'] ? $_SERVER['HTTP_X_FORWARDED_FOR'] : $_SERVER['REMOTE_ADDR']); 
   }
-  foreach ($_SERVER as $key=>$val )
-       {
-         echo "<li>".$key.":" .$val."</li>\r\n";
-        }
 
   return $visitorIP;
 }
