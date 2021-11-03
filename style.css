@@ -1,0 +1,8 @@
+body,
+table,
+tr,
+td {
+    font-family: Sans-Serif, 'Arial Narrow', 'Franklin Gothic Medium', Arial;
+}
+td { padding-bottom: 12px; }
+small { color:gray; }

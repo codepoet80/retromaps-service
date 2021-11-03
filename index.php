@@ -1,15 +1,32 @@
 <?php
 $config = include('config.php');
-$key = $config['apikey'];
+$bingKey = $config['bingAPIKey'];
+$ipinfoKey = $config['ipinfoKey'];
+include ("common.php");
 ?>
 <html>  
   <head>  
     <title>webOS Maps Test</title>  
   </head>  
   <body>  
+    <?php
+
+    $useLoc = geolocateByIP(getVisitorIP(), $ipinfoKey);
+ 
+    if (isset($_POST['query'])) {
+      $useLoc = $_POST['query'];
+    }
+
+    $zoomLevel = 5;
+    if (isset($_POST['zoom'])) {
+      $zoomLevel = $_POST['zoom'];
+    }
+    ?>
     <form method="post">  
-      Address: <input type="text" style="width:280px" name="query" value="<?php echo (isset($_POST['query'])?$_POST['query']:'') ?>"><br>
-      Zoom Level: <select name="zoom" value="15">
+      Address: <input type="text" style="width:280px" name="query" value="<?php echo $useLoc ?>"><br>
+      Zoom Level: <select name="zoom">
+        <option value="<?php echo $zoomLevel; ?>">[<?php echo $zoomLevel; ?>]</option>
+        <option value="4">4</option>
         <option value="5">5</option>
         <option value="6">6</option>
         <option value="7">7</option>
@@ -25,67 +42,34 @@ $key = $config['apikey'];
         <option value="17">17</option>
         <option value="18">18</option>
         <option value="19">19</option>
-        </select><br/>
+      </select>&nbsp;&nbsp;
+      Map Type: <select name="maptype">
+        <option value="Road">Road</option>
+        <option value="Aerial">Aerial</option>
+      </select><br/>
         Custom API Key: <input type="text" name="key" value=""> (Leave blank to use test key)<br>  
       <input type="submit" value="Submit">  
   </form>  
 <?php  
   
-if(isset($_POST['query']))  
+if(isset($useLoc))  
   {  
     if (isset($_POST['key']) && $_POST['key'] != "") {
-      $key = $_POST['key'];
+      $bingKey = $_POST['key'];
     }
-    // URL of Bing Maps REST Locations API;   
-    $baseURL = "http://dev.virtualearth.net/REST/v1/Locations";   
-  
-  if ($_POST['query']!= "")//if query value is provided, find location using query  
-  {  
-   // Create URL to find a location by query  
-    $query = str_ireplace(" ","%20",$_POST['query']);  
-    $findURL = $baseURL."/".$query."?output=xml&key=".$key;  
-  }  
-  else //if query value is not provided, find location using specified US address values  
-    // Create a URL to find a location by address  
-  {  
-    $country = "US";  
-    $addressLine = str_ireplace(" ","%20",$_POST['address']);  
-    $adminDistrict = str_ireplace(" ","%20",$_POST['state']);  
-    $locality = str_ireplace(" ","%20",$_POST['city']);  
-    $postalCode = str_ireplace(" ","%20",$_POST['zipcode']);    
-    // Construct final URL for call to Locations API  
-    $findURL = $baseURL."/".$country."/".$adminDistrict."/".$postalCode."/".$locality."/".$addressLine."?output=xml&key=".$key;  
-  }  
-  
-   // Get output from URL and convert to XML element using php_xml  
-   $output = file_get_contents($findURL);
-   $response = new SimpleXMLElement($output);  
-  
-  // Extract and pring latitude and longitude coordinates from results  
-  $latitude = $response->ResourceSets->ResourceSet->Resources->Location->Point->Latitude;  
-  $longitude = $response->ResourceSets->ResourceSet->Resources->Location->Point->Longitude;  
-  
-  echo "Latitude: ".$latitude."<br>";  
-  echo "Longitude: ".$longitude."<br>";  
-  
-  // Display the location on a map using the Imagery API  
-  $imageryBaseURL = "http://dev.virtualearth.net/REST/v1/Imagery/Map";  
-  //http://dev.virtualearth.net/REST/v1/Imagery/Map/imagerySet/centerPoint/zoomLevel=zoomLevel&mapSize=mapSize&pushpin=pushpin&mapLayer=mapLayer&key={BingMapsKey}
-  
-  $imagerySet = "Road";  //Aerial, AerialWithLabels
-  $centerPoint = $latitude.",".$longitude;  
-  $pushpin = $centerPoint.";4;ID";  
-  $zoomLevel = "5";
-  if (isset($_POST['zoom'])) {
-    $zoomLevel = $_POST['zoom'];
-  }
-  
-  echo "<img src='".$imageryURL = $imageryBaseURL."/".$imagerySet."/".$centerPoint."/".$zoomLevel."?pushpin=".$pushpin."&mapSize=1024,768&key=".$key."'>";  
-  
-}  
-else  
-{  
-  echo "<p>Please enter your Bing Maps key and complete all address fields for a US address or the Query field, then click submit.</p>";  
+
+    $zoomLevel = "9";
+    if (isset($_POST['zoom'])) {
+      $zoomLevel = $_POST['zoom'];
+    }
+
+    $mapType = "Road";
+    if (isset($_POST['maptype'])) {
+      $mapType = $_POST['maptype'];
+    }
+
+    $mapInfo = getDataForLocation($useLoc, $mapType, $zoomLevel, $bingKey);    
+    echo "<img src='" . $mapInfo->img . "'>";
 }  
 ?>  
 </body>  
