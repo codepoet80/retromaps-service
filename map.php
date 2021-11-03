@@ -1,5 +1,7 @@
 <?php
 include ("common.php");
+$config = include('config.php');
+$bingKey = $config['bingAPIKey'];
 
 //Handle more specific queries
 $img = null;
@@ -14,6 +16,7 @@ if (!isset($img)) {    //Deal with no usable request
     die;
 }
 $url = base64url_decode($img);
+$url = $url . $bingKey;
 
 //Prepare the cache
 $path = "cache";

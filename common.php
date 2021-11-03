@@ -99,7 +99,7 @@ function getDataForLocation($useLoc, $imagerySet, $zoomLevel, $bingKey)
     $imageryBaseURL = "http://dev.virtualearth.net/REST/v1/Imagery/Map";  
     $centerPoint = $latitude.",".$longitude;  
     $pushpin = $centerPoint.";4;ID";
-    $imgOrig = $imageryBaseURL."/".$imagerySet."/".$centerPoint."/".$zoomLevel."?pushpin=".$pushpin."&mapSize=1024,768&key=".$bingKey;
+    $imgOrig = $imageryBaseURL."/".$imagerySet."/".$centerPoint."/".$zoomLevel."?pushpin=".$pushpin."&mapSize=1024,768&key=";
     $img = "map.php?img=" . base64url_encode($imgOrig);
 
     $data = (object) [
