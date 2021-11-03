@@ -16,7 +16,8 @@ $ipinfoKey = $config['ipinfoKey'];
     <link rel="apple-touch-startup-image" href="icon-256.png">
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="white" />
-
+    
+    <link rel="stylesheet" href="style.css">
   </head>  
   <body>  
     <?php
