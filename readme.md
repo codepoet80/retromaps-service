@@ -1,12 +1,14 @@
 # Overview
 
-A PHP service, leveraging PodcastIndex.org to provide a podcast directory, and a proxy service, for retro devices that are capable of playing MP3s, but not capable of negotiating modern HTTPS connections.
+A PHP service, leveraging Bing Maps and IPInfo.org to provide a podcast directory, and a proxy service, for retro devices that are capable of playing rendering images, but may not be able to get a geofix, load tiles or render vectors.
 
 # Requirements
 
-Provide your PodcastIndex API key and secret in a file called secrets.php
+Provide your Bing Maps API key and IPInfo.org token in a file called config.php. See the config-example.php for structure.
 
-Get your API credentials here: https://api.podcastindex.org/signup
+Get your Bing Maps API credentials here: https://www.microsoft.com/en-us/maps/create-a-bing-maps-key/#basic
+
+Get your IPInfo token here: https://ipinfo.io/
 
 # Prerequisites
 
