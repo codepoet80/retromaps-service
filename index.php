@@ -32,33 +32,35 @@ $ipinfoKey = $config['ipinfoKey'];
       $zoomLevel = $_POST['zoom'];
     }
     ?>
-    <form method="post">  
-      Address: <input type="text" style="width:280px" name="query" value="<?php echo $useLoc ?>"><br>
-      Zoom Level: <select name="zoom">
-        <option value="<?php echo $zoomLevel; ?>">[<?php echo $zoomLevel; ?>]</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-        <option value="6">6</option>
-        <option value="7">7</option>
-        <option value="8">8</option>
-        <option value="9">9</option>
-        <option value="10">10</option>
-        <option value="11">11</option>
-        <option value="12">12</option>
-        <option value="13">13</option>
-        <option value="14">14</option>
-        <option value="15">15</option>
-        <option value="16">16</option>
-        <option value="17">17</option>
-        <option value="18">18</option>
-        <option value="19">19</option>
-      </select>&nbsp;&nbsp;
-      Map Type: <select name="maptype">
-        <option value="Road">Road</option>
-        <option value="Aerial">Aerial</option>
-      </select><br/>
-        Custom API Key: <input type="text" name="key" value=""> (Leave blank to use test key)<br>  
-      <input type="submit" value="Submit">  
+    <form method="post">
+      <table border="0" cellpadding="0" cellspacing="0">
+          <tr><td rowspan="3"><img src="maps-logo-small.png"></td><td>Address: </td><td><input type="text" style="width:280px" name="query" value="<?php echo $useLoc ?>"></td></tr>
+          <tr><td>Zoom Level: </td><td><select name="zoom">
+          <option value="<?php echo $zoomLevel; ?>">[<?php echo $zoomLevel; ?>]</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="10">10</option>
+          <option value="11">11</option>
+          <option value="12">12</option>
+          <option value="13">13</option>
+          <option value="14">14</option>
+          <option value="15">15</option>
+          <option value="16">16</option>
+          <option value="17">17</option>
+          <option value="18">18</option>
+          <option value="19">19</option>
+        </select>&nbsp;&nbsp;
+        Map Type: <select name="maptype">
+          <option value="Road">Road</option>
+          <option value="Aerial">Aerial</option>
+        </select></td></tr>
+        <tr><td>Custom API Key: </td><td><input type="text" name="key" value=""> <i>Leave blank to use test key</i></td></tr> 
+        <tr><td></td><td colspan="2"><input type="submit" value="Update Map"></td></tr>
+      </table>  
   </form>  
 <?php  
   
