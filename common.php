@@ -100,16 +100,23 @@ function getDataForLocation($useLoc, $imagerySet, $zoomLevel, $bingKey)
     $centerPoint = $latitude.",".$longitude;  
     $pushpin = $centerPoint.";4;ID";
     $imgOrig = $imageryBaseURL."/".$imagerySet."/".$centerPoint."/".$zoomLevel."?pushpin=".$pushpin."&mapSize=1024,768&key=";
-    $img = "map.php?img=" . base64url_encode($imgOrig);
+    $img = getBaseURLPath() . "getmapimage.php?img=" . base64url_encode($imgOrig);
 
     $data = (object) [
       'latitude' => (string) $latitude,
       'longitude' => (string) $longitude,
       'zoomLevel' => $zoomLevel,
+      'mapType' => $imagerySet,
       'img' => $img
     ];
     return $data;
   } 
+}
+
+function getBaseURLPath()
+{
+  $base_url="http://".$_SERVER['SERVER_NAME'].dirname($_SERVER["REQUEST_URI"].'?').'/';
+  return $base_url;
 }
 
 function LatLongToPixel(&$x, &$y, $lat, $long, $clat, $clong, $zoom, $mapWidth, $mapHeight)  

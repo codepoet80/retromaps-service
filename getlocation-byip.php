@@ -3,6 +3,7 @@
 Send a Geolocate by IP search request to IPInfo
 */
 
+//Check authentication
 header('Content-Type: application/json');
 include('common.php');
 $config = include('config.php');
@@ -29,8 +30,10 @@ if (isset($_GET["key"]) && $_GET["key"] != "") {
 	$ipinfoKey = $_GET["key"];
 }
 
+//Get location
 $useLoc = geolocateByIP(getVisitorIP(), $ipinfoKey);
 
+//Get results
 $myfile = fopen($search_path, "rb");
 $content = stream_get_contents($myfile);
 fclose($myfile);
@@ -39,6 +42,7 @@ if (!isset($useLoc) || $useLoc == "") {
 	die;
 }
 
+//Return results
 $data = (object) [
 	'location' => (string) $useLoc,
   ];
