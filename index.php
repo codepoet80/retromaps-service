@@ -27,7 +27,7 @@ $ipinfoKey = $config['ipinfoKey'];
       $useLoc = $_POST['query'];
     }
 
-    $zoomLevel = 5;
+    $zoomLevel = 9;
     if (isset($_POST['zoom'])) {
       $zoomLevel = $_POST['zoom'];
     }
@@ -68,11 +68,6 @@ if(isset($useLoc))
   {  
     if (isset($_POST['key']) && $_POST['key'] != "") {
       $bingKey = $_POST['key'];
-    }
-
-    $zoomLevel = "9";
-    if (isset($_POST['zoom'])) {
-      $zoomLevel = $_POST['zoom'];
     }
 
     $mapType = "Road";
