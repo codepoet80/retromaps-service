@@ -3,6 +3,9 @@ include ("common.php");
 $config = include('config.php');
 $bingKey = $config['bingAPIKey'];
 $ipinfoKey = $config['ipinfoKey'];
+$mapType = $config['defaultMapType'];
+$mapSize = $config['defaultMapSize'];
+$zoomLevel = $config['defaultZoomLevel'];
 ?>
 <html>  
   <head>  
@@ -27,7 +30,6 @@ $ipinfoKey = $config['ipinfoKey'];
       $useLoc = $_POST['query'];
     }
 
-    $zoomLevel = 9;
     if (isset($_POST['zoom'])) {
       $zoomLevel = $_POST['zoom'];
     }
@@ -70,12 +72,15 @@ if(isset($useLoc))
       $bingKey = $_POST['key'];
     }
 
-    $mapType = "Road";
     if (isset($_POST['maptype'])) {
       $mapType = $_POST['maptype'];
     }
 
-    $mapInfo = getDataForLocation($useLoc, $mapType, $zoomLevel, $bingKey);
+    if (isset($_POST['mapsize'])) {
+      $mapSize = $_POST['mapsize'];
+    }
+
+    $mapInfo = getDataForLocation($useLoc, $mapType, $mapSize, $zoomLevel, $bingKey);
     echo "<img src='" . $mapInfo->img . "'>";
     echo "<!--";
     print_r($mapInfo);

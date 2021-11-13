@@ -80,7 +80,7 @@ function geolocateByIP($ip, $ipinfoKey)
 }
 
 //valid imagerySets: Road, Aerial, AerialWithLabels
-function getDataForLocation($useLoc, $imagerySet, $zoomLevel, $bingKey)
+function getDataForLocation($useLoc, $imagerySet, $mapSize, $zoomLevel, $bingKey)
 {
   if ($useLoc!= "")//if query value is provided, find location using query  
   {  
@@ -99,12 +99,14 @@ function getDataForLocation($useLoc, $imagerySet, $zoomLevel, $bingKey)
     $imageryBaseURL = "http://dev.virtualearth.net/REST/v1/Imagery/Map";  
     $centerPoint = $latitude.",".$longitude;  
     $pushpin = $centerPoint.";4;ID";
-    $imgOrig = $imageryBaseURL."/".$imagerySet."/".$centerPoint."/".$zoomLevel."?pushpin=".$pushpin."&mapSize=1024,768&key=";
+    //$imgOrig = $imageryBaseURL."/".$imagerySet."/".$centerPoint."/".$zoomLevel."?pushpin=".$pushpin."&mapSize=" . $mapSize . "&key=";
+    $imgOrig = $imageryBaseURL."/".$imagerySet."/".$centerPoint."/".$zoomLevel."?mapSize=" . $mapSize . "&key=";
     $img = getBaseURLPath() . "getmapimage.php?img=" . base64url_encode($imgOrig);
 
     $data = (object) [
       'latitude' => (string) $latitude,
       'longitude' => (string) $longitude,
+      'centerpoint' => (string) $centerPoint,
       'zoomLevel' => $zoomLevel,
       'mapType' => $imagerySet,
       'img' => $img

@@ -4,6 +4,9 @@ include('common.php');
 $config = include('config.php');
 $bingKey = $config['bingAPIKey'];
 $client_key = $config['clientids'];
+$mapType = $config['defaultMapType'];
+$mapSize = $config['defaultMapSize'];
+$zoomLevel = $config['defaultZoomLevel'];
 
 //Check authentication
 $request_headers = get_request_headers();
@@ -29,6 +32,8 @@ if (isset($_GET['q'])) {
 	$the_query = $_GET['q'];
 	if (isset($_GET["mapType"]))
 		$mapType = $_GET["mapType"];
+	if (isset($_GET["mapSize"]))
+		$mapSize = $_GET["mapSize"];
 	if (isset($_GET["zoomLevel"]))
 		$zoomLevel = $_GET["zoomLevel"];
 	if (isset($_GET["key"]) && $_GET["key"] != "")
@@ -38,7 +43,7 @@ if (isset($_GET['q'])) {
 }
 
 //Get results
-$mapData = getDataForLocation($the_query, $mapType, $zoomLevel, $bingKey);
+$mapData = getDataForLocation($the_query, $mapType, $mapSize, $zoomLevel, $bingKey);
 if (!isset($mapData) || $mapData == "") {
 	echo "{\"status\": \"error\", \"msg\": \"ERROR: No usable response from Map service. Query may have been malformed, or API quota may have been exceeded.\"}";
 	die;
