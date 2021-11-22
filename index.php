@@ -24,7 +24,7 @@ $zoomLevel = $config['defaultZoomLevel'];
   </head>  
   <body>  
     <?php
-    echo file_get_contents("http://www.webosarchive.com/menu.php");
+    echo file_get_contents("http://www.webosarchive.com/menu.php?content=maps");
     ?>
     <div class="content">
       <?php
