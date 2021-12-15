@@ -15,3 +15,5 @@ Get your IPInfo token here: https://ipinfo.io/
 * Apache (or other web server) with PHP 7
 * sudo apt get php-xml
 * sudo apt get php-gd
+* sudo apt install php7.x-curl
+* sudo apt install php7.x-xml
