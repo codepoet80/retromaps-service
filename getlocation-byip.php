@@ -15,6 +15,7 @@ $data = (object) [
 	'altitude' => -1,
 	'heading' => -1,
 	'horizAccuracy' => -1,
+	'location' => "",
 	'latitude' => -1,
 	'longitude' => -1,
 	'timestamp' => round(microtime(true) * 1000),
@@ -57,6 +58,8 @@ if (!isset($useLoc) || $useLoc == "") {
 	print_r (json_encode($data));
 }
 
+$data->location = $useLoc;
+//Seperate latitude and longitude
 $locationparts = explode(",", (string)$useLoc);
 $data->latitude = $locationparts[0];
 $data->longitude = end($locationparts);
