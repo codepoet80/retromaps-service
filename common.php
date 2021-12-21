@@ -100,7 +100,7 @@ function getDataForLocation($useLoc, $imagerySet, $mapSize, $zoomLevel, $bingKey
     $centerPoint = $latitude.",".$longitude;  
     $pushpin = $centerPoint.";4;ID";
     //$imgOrig = $imageryBaseURL."/".$imagerySet."/".$centerPoint."/".$zoomLevel."?pushpin=".$pushpin."&mapSize=" . $mapSize . "&key=";
-    $imgOrig = $imageryBaseURL."/".$imagerySet."/".$centerPoint."/".$zoomLevel."?mapSize=" . $mapSize . "&key=";
+    $imgOrig = $imageryBaseURL."/".$imagerySet."/".$centerPoint."/".$zoomLevel."?pushpin=".$pushpin."?mapSize=" . $mapSize . "&key=";
     $img = getBaseURLPath() . "getmapimage.php?img=" . base64url_encode($imgOrig);
 
     $data = (object) [
