@@ -120,8 +120,12 @@ function getDataForLocation($useLoc, $imagerySet, $mapSize, $pushPin, $zoomLevel
 
 function getBaseURLPath()
 {
-  $base_url="http://".$_SERVER['SERVER_NAME'].dirname($_SERVER["REQUEST_URI"].'?');
-  return $base_url;
+  $uri = $_SERVER['REQUEST_URI'];
+  $uriParts = explode("/", $uri);
+  $uri = str_replace(end($uriParts), "", $uri);
+  $protocol = ((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
+  $url = $protocol . $_SERVER['HTTP_HOST'] . $uri . "/";
+  return $url;
 }
 
 function LatLongToPixel(&$x, &$y, $lat, $long, $clat, $clong, $zoom, $mapWidth, $mapHeight)  
