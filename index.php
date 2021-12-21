@@ -85,7 +85,6 @@ $zoomLevel = $config['defaultZoomLevel'];
       }
 
       $mapInfo = getDataForLocation($useLoc, $mapType, $mapSize, $useLoc.";36", $zoomLevel, $bingKey);
-      print_r($mapInfo);
       echo "<img src='" . $mapInfo->img . "'>";
       echo "<!--";
       print_r($mapInfo);
