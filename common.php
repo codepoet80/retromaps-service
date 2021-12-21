@@ -98,7 +98,7 @@ function getDataForLocation($useLoc, $imagerySet, $mapSize, $pushPin, $zoomLevel
     $longitude = $response->ResourceSets->ResourceSet->Resources->Location->Point->Longitude;
     $imageryBaseURL = "http://dev.virtualearth.net/REST/v1/Imagery/Map";  
     $centerPoint = $latitude.",".$longitude;
-    if (!isset($pushPin) || empty($pushPin) || $pushPin == "" || strtolower($pushPin) == "false" || strtolower($pushPin) == "off" || strtolower($pushPin) == "no")
+    if (!isset($pushPin) || empty($pushPin) || $pushPin == "" || $pushPin == false || strtolower($pushPin) == "false" || strtolower($pushPin) == "off" || strtolower($pushPin) == "no")
       $imgOrig = $imageryBaseURL."/".$imagerySet."/".$centerPoint."/".$zoomLevel."&mapSize=" . $mapSize . "&key=";
     else
       $imgOrig = $imageryBaseURL."/".$imagerySet."/".$centerPoint."/".$zoomLevel."?pushpin=".$pushPin."&mapSize=" . $mapSize . "&key=";
