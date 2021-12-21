@@ -40,9 +40,19 @@ function getVisitorIP($hostname)
   }
   else 
   {
-      $visitorIP = $_SERVER['HTTP_CLIENT_IP'] ? $_SERVER['HTTP_CLIENT_IP'] : ($_SERVER['HTTP_X_FORWARDED_FOR'] ? $_SERVER['HTTP_X_FORWARDED_FOR'] : $_SERVER['REMOTE_ADDR']); 
+    if (isset($_SERVER['HTTP_CLIENT_IP']) && !empty($_SERVER['HTTP_CLIENT_IP']))   //check ip from share internet
+    {
+      $visitorIP=$_SERVER['HTTP_CLIENT_IP'];
+    }
+    elseif (isset($_SERVER['HTTP_X_FORWARDED_FOR']) && !empty($_SERVER['HTTP_X_FORWARDED_FOR']))   //to check ip is pass from proxy
+    {
+      $visitorIP=$_SERVER['HTTP_X_FORWARDED_FOR'];
+    }
+    else
+    {
+      $visitorIP=$_SERVER['REMOTE_ADDR'];
+    }
   }
-
   return $visitorIP;
 }
 
