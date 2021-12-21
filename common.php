@@ -103,7 +103,7 @@ function getDataForLocation($useLoc, $imagerySet, $mapSize, $pushPin, $zoomLevel
     if (!isset($pushPin) || empty($pushPin) || $pushPin == "" || $pushPin == false || strtolower($pushPin) == "false" || strtolower($pushPin) == "off" || strtolower($pushPin) == "no")
       $imgOrig .= "&key=";
     else
-      $imgOrig .= "&pushpin=".$pushPin."&key=";
+      $imgOrig .= "&pushpin=".$centerPoint."&key=";
     $img = getBaseURLPath() . "getmapimage.php?img=" . base64url_encode($imgOrig);
 
     $data = (object) [
