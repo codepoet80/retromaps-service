@@ -124,7 +124,7 @@ function getBaseURLPath()
   $uriParts = explode("/", $uri);
   $uri = str_replace(end($uriParts), "", $uri);
   $protocol = ((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
-  $url = $protocol . $_SERVER['HTTP_HOST'] . $uri;
+  $url = $protocol . $_SERVER['HTTP_HOST'] . $uri . "/";
   return $url;
 }
 
