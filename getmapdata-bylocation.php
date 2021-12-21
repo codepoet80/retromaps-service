@@ -34,7 +34,7 @@ if (isset($_GET['q'])) {
 		$mapType = $_GET["mapType"];
 	if (isset($_GET["mapSize"]))
 		$mapSize = $_GET["mapSize"];
-	$pushpin = $the_query.";4;ID";
+	$pushPin = $the_query.";4;ID";
 	if (isset($_GET["pushPin"]))
 		$pushPin = $_GET["pushPin"];
 	if (isset($_GET["zoomLevel"]))
