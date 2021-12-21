@@ -97,9 +97,11 @@ function getDataForLocation($useLoc, $imagerySet, $mapSize, $pushPin, $zoomLevel
     $latitude = $response->ResourceSets->ResourceSet->Resources->Location->Point->Latitude;
     $longitude = $response->ResourceSets->ResourceSet->Resources->Location->Point->Longitude;
     $imageryBaseURL = "http://dev.virtualearth.net/REST/v1/Imagery/Map";  
-    $centerPoint = $latitude.",".$longitude;  
-    //$imgOrig = $imageryBaseURL."/".$imagerySet."/".$centerPoint."/".$zoomLevel."?pushpin=".$pushpin."&mapSize=" . $mapSize . "&key=";
-    $imgOrig = $imageryBaseURL."/".$imagerySet."/".$centerPoint."/".$zoomLevel."?pushpin=".$pushPin."&mapSize=" . $mapSize . "&key=";
+    $centerPoint = $latitude.",".$longitude;
+    if (!isset($pushPin) || empty($pushPin) || $pushPin == "" || strtolower($pushPin) == "false" || strtolower($pushPin) == "off" || strtolower($pushPin) == "no")
+      $imgOrig = $imageryBaseURL."/".$imagerySet."/".$centerPoint."/".$zoomLevel."&mapSize=" . $mapSize . "&key=";
+    else
+      $imgOrig = $imageryBaseURL."/".$imagerySet."/".$centerPoint."/".$zoomLevel."?pushpin=".$pushPin."&mapSize=" . $mapSize . "&key=";
     $img = getBaseURLPath() . "getmapimage.php?img=" . base64url_encode($imgOrig);
 
     $data = (object) [
