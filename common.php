@@ -25,7 +25,7 @@ function base64url_decode($data, $strict = false)
   return base64_decode($b64, $strict);
 }
 
-function getVisitorIP()
+function getVisitorIP($hostname)
 {
   $serverIP = explode('.',$_SERVER['SERVER_ADDR']);
   $localIP  = explode('.',$_SERVER['REMOTE_ADDR']);
@@ -36,7 +36,7 @@ function getVisitorIP()
   );
   if($isLocal)
   {
-      $visitorIP = gethostbyname($config['hostname']);
+      $visitorIP = gethostbyname($hostname);
   }
   else 
   {
@@ -124,7 +124,7 @@ function getBaseURLPath()
   $uriParts = explode("/", $uri);
   $uri = str_replace(end($uriParts), "", $uri);
   $protocol = ((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
-  $url = $protocol . $_SERVER['HTTP_HOST'] . $uri . "/";
+  $url = $protocol . $_SERVER['HTTP_HOST'] . $uri;
   return $url;
 }
 

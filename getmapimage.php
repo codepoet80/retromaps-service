@@ -37,13 +37,17 @@ $path = $path . "/" . $cacheID . ".jpg";
 if (!file_exists($path)) {
     file_put_contents($path, fopen($url, 'r'));
 }
-
-// send the right headers
-$info = getimagesize($path);
-header("Content-Type: " . $info['mime']);
-header("Content-Length: " . filesize($path));
-// dump the file and stop the script
-$fp = fopen($path, 'r');
-fpassthru($fp);
-exit;
+if (filesize($path) > 0) {
+    // send the right headers
+    $info = getimagesize($path);
+    header("Content-Type: " . $info['mime']);
+    header("Content-Length: " . filesize($path));
+    // dump the file and stop the script
+    $fp = fopen($path, 'r');
+    fpassthru($fp);
+    exit;
+} else {
+    http_response_code(405);
+    exit();
+}
 ?>

@@ -1,6 +1,6 @@
 <?php
-include ("common.php");
 $config = include('config.php');
+include ("common.php");
 $bingKey = $config['bingAPIKey'];
 $ipinfoKey = $config['ipinfoKey'];
 $mapType = $config['defaultMapType'];
@@ -28,7 +28,7 @@ $zoomLevel = $config['defaultZoomLevel'];
     ?>
     <div class="content">
       <?php
-      $useLoc = geolocateByIP(getVisitorIP(), $ipinfoKey);
+      $useLoc = geolocateByIP(getVisitorIP($config['hostname']), $ipinfoKey);
   
       if (isset($_POST['query'])) {
         $useLoc = $_POST['query'];
@@ -85,6 +85,7 @@ $zoomLevel = $config['defaultZoomLevel'];
       }
 
       $mapInfo = getDataForLocation($useLoc, $mapType, $mapSize, $useLoc.";36", $zoomLevel, $bingKey);
+      print_r($mapInfo);
       echo "<img src='" . $mapInfo->img . "'>";
       echo "<!--";
       print_r($mapInfo);

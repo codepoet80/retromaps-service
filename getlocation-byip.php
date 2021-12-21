@@ -5,8 +5,8 @@ Send a Geolocate by IP search request to IPInfo
 
 //Check authentication
 header('Content-Type: application/json');
-include('common.php');
 $config = include('config.php');
+include('common.php');
 $ipinfoKey = $config['ipinfoKey'];
 $client_key = $config['clientids'];
 
@@ -46,7 +46,7 @@ if (isset($_GET["key"]) && $_GET["key"] != "") {
 }
 
 //Get location
-$useLoc = geolocateByIP(getVisitorIP(), $ipinfoKey);
+$useLoc = geolocateByIP(getVisitorIP($config['hostname']), $ipinfoKey);
 
 //Get results
 $myfile = fopen($search_path, "rb");
