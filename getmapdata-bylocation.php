@@ -34,6 +34,9 @@ if (isset($_GET['q'])) {
 		$mapType = $_GET["mapType"];
 	if (isset($_GET["mapSize"]))
 		$mapSize = $_GET["mapSize"];
+	$pushpin = $the_query.";4;ID";
+	if (isset($_GET["pushPin"]))
+		$pushPin = $_GET["pushPin"];
 	if (isset($_GET["zoomLevel"]))
 		$zoomLevel = $_GET["zoomLevel"];
 	if (isset($_GET["key"]) && $_GET["key"] != "")
@@ -43,7 +46,7 @@ if (isset($_GET['q'])) {
 }
 
 //Get results
-$mapData = getDataForLocation($the_query, $mapType, $mapSize, $zoomLevel, $bingKey);
+$mapData = getDataForLocation($the_query, $mapType, $mapSize, $pushPin, $zoomLevel, $bingKey);
 if (!isset($mapData) || $mapData == "") {
 	echo "{\"status\": \"error\", \"msg\": \"ERROR: No usable response from Map service. Query may have been malformed, or API quota may have been exceeded.\"}";
 	die;
