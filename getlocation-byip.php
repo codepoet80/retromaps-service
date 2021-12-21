@@ -10,7 +10,7 @@ include('common.php');
 $ipinfoKey = $config['ipinfoKey'];
 $client_key = $config['clientids'];
 
-$data = (object) [
+$data = (object) [	
 	'returnValue' => true,
 	'altitude' => -1,
 	'heading' => -1,
@@ -26,17 +26,19 @@ $data = (object) [
 ];
 
 $request_headers = get_request_headers();
-if ($client_key != '') {	//If configuration includes both client key values, enforce them
+if (isset($client_key) && !empty($client_key) && $client_key != '') {	//If configuration includes both client key values, enforce them
 	if (!array_key_exists('Client-Id', $request_headers)) {
 		$data->errorCode = 8;
 		$data->responseText = "No Client-Id in request header";
 		print_r (json_encode($data));
+		die();
 	} else {
 			$request_key = $request_headers['Client-Id'];
 			if (!in_array($request_key, $client_key)) {
 				$data->errorCode = 6;
 				$data->responseText = "Client-Id in request was not known";
-				print_r (json_encode($data));		
+				print_r (json_encode($data));
+				die();
 			}
 	}
 }
@@ -47,17 +49,12 @@ if (isset($_GET["key"]) && $_GET["key"] != "") {
 
 //Get location
 $useLoc = geolocateByIP(getVisitorIP($config['hostname']), $ipinfoKey);
-
 //Get results
-$myfile = fopen($search_path, "rb");
-$content = stream_get_contents($myfile);
-fclose($myfile);
 if (!isset($useLoc) || $useLoc == "") {
 	$data->errorCode = 2;
 	$data->responseText = "Upstream location resolver response was empty";
 	print_r (json_encode($data));
 }
-
 $data->location = $useLoc;
 //Seperate latitude and longitude
 $locationparts = explode(",", (string)$useLoc);

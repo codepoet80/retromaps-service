@@ -1,6 +1,6 @@
 <?php
-include ("common.php");
 $config = include('config.php');
+include ("common.php");
 $bingKey = $config['bingAPIKey'];
 
 //Handle more specific queries
