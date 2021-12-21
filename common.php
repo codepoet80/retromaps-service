@@ -117,7 +117,7 @@ function getDataForLocation($useLoc, $imagerySet, $mapSize, $zoomLevel, $bingKey
 
 function getBaseURLPath()
 {
-  $base_url="http://".$_SERVER['SERVER_NAME'].dirname($_SERVER["REQUEST_URI"].'?').'/';
+  $base_url="http://".$_SERVER['SERVER_NAME'].dirname($_SERVER["REQUEST_URI"].'?');
   return $base_url;
 }
 
