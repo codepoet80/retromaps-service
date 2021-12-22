@@ -26,8 +26,7 @@ $zoomLevel = $config['defaultZoomLevel'];
     <?php
     echo file_get_contents("http://www.webosarchive.com/menu.php?content=maps");
     ?>
-    <div class="content">
-      <?php
+     <?php
       $useLoc = geolocateByIP(getVisitorIP($config['hostname']), $ipinfoKey);
   
       if (isset($_POST['query'])) {
@@ -38,9 +37,11 @@ $zoomLevel = $config['defaultZoomLevel'];
         $zoomLevel = $_POST['zoom'];
       }
       ?>
+    <div class="content">
+      <p align='middle' style='margin-top:50px;'><a href='http://appcatalog.webosarchive.com/showMuseum.php?search=map+lite'><img src='icon-128.png' style="width:128px; height: 128px;" border="0"></a></p>
       <form method="post">
-        <table border="0" cellpadding="0" cellspacing="0">
-            <tr><td rowspan="3"><img src="maps-logo-small.png"></td><td>Address: </td><td><input type="text" style="width:280px" name="query" value="<?php echo $useLoc ?>"></td></tr>
+        <table border="0" cellpadding="0" cellspacing="0" class="content" style="margin: 0 auto;">
+            <tr><td>Address: </td><td><input type="text" style="width:280px" name="query" value="<?php echo $useLoc ?>"></td></tr>
             <tr><td>Zoom Level: </td><td><select name="zoom">
             <option value="<?php echo $zoomLevel; ?>">[<?php echo $zoomLevel; ?>]</option>
             <option value="4">4</option>
@@ -64,10 +65,13 @@ $zoomLevel = $config['defaultZoomLevel'];
             <option value="Road">Road</option>
             <option value="Aerial">Aerial</option>
           </select></td></tr>
-          <tr><td>Custom API Key: </td><td><input type="text" name="key" value=""> <i>Leave blank to use test key</i></td></tr> 
-          <tr><td></td><td colspan="2"><input type="submit" value="Update Map"></td></tr>
+          <!--
+                <tr><td>Custom API Key: </td><td><input type="text" name="key" value=""> <i>Leave blank to use test key</i></td></tr> 
+          -->
+          <tr><td colspan="3" align="center"><input type="submit" value="Update Map"></td></tr>
         </table>  
     </form>  
+    
   <?php  
     
   if(isset($useLoc))  
@@ -85,12 +89,14 @@ $zoomLevel = $config['defaultZoomLevel'];
       }
 
       $mapInfo = getDataForLocation($useLoc, $mapType, $mapSize, ";36", $zoomLevel, $bingKey);
-      echo "<img src='" . $mapInfo->img . "'>";
+      echo "<p align='middle'><img src='" . $mapInfo->img . "' style='margin: 0 auto; border-radius:2% '></p>";
       echo "<!--";
       print_r($mapInfo);
       echo "-->";
   }  
   ?>  
+
+<p align='middle' style="margin-top: 28px"><small>Location provided by <a href='http://ipinfo.io'>IPInfo</a>, Maps provided by <a href='https://docs.microsoft.com/en-us/bingmaps/articles/accessing-the-bing-maps-rest-services-using-php'>Bing</a> | <a href="https://github.com/codepoet80/retro-maps">Host this yourself</a> | <a href='http://appcatalog.webosarchive.com/showMuseum.php?search=map+lite'>Download the webOS App</a></small></p>
   </div>
 </body>  
 </html>

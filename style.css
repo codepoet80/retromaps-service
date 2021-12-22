@@ -7,3 +7,4 @@ td {
 td { padding-bottom: 12px; }
 .content { margin-top: 12px; }
 small { color:gray; }
+small a { color: green !important; }
