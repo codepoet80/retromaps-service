@@ -41,8 +41,8 @@ $zoomLevel = $config['defaultZoomLevel'];
       <p align='middle' style='margin-top:50px;'><a href='http://appcatalog.webosarchive.com/showMuseum.php?search=map+lite'><img src='icon-128.png' style="width:128px; height: 128px;" border="0"></a></p>
       <form method="post">
         <table border="0" cellpadding="0" cellspacing="0" class="content" style="margin: 0 auto;">
-            <tr><td>Address: </td><td><input type="text" style="width:280px" name="query" value="<?php echo $useLoc ?>"></td></tr>
-            <tr><td>Zoom Level: </td><td><select name="zoom">
+            <tr><td>Address: </td><td><input type="text" style="width:200px" name="query" value="<?php echo $useLoc ?>"></td></tr>
+            <tr><td>Zoom Level: </td><td>&nbsp;<select name="zoom">
             <option value="<?php echo $zoomLevel; ?>">[<?php echo $zoomLevel; ?>]</option>
             <option value="4">4</option>
             <option value="5">5</option>
