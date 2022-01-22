@@ -96,7 +96,7 @@ $zoomLevel = $config['defaultZoomLevel'];
       }
 
       $mapInfo = getDataForLocation($useLoc, $mapType, $mapSize, ";36", $zoomLevel, $bingKey);
-      echo "<p align='middle'><img src='" . $mapInfo->img . "' style='margin: 0 auto; border-radius:2% '></p>";
+      echo "<p align='middle'><img src='" . $mapInfo->img . "' style='margin: 0 auto; border-radius:2%; -webkit-border-radius:10px '></p>";
       echo "<!--";
       print_r($mapInfo);
       echo "-->";
