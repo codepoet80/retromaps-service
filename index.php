@@ -39,7 +39,7 @@ $zoomLevel = $config['defaultZoomLevel'];
       ?>
     <div class="content">
       <p align='middle' style='margin-top:50px;'>
-        <a href='http://appcatalog.webosarchive.com/showMuseum.php?search=map+lite'>
+        <a href='../'>
         <img src='icon-128.png' style="width:128px; height: 128px;" border="0"></a><br/>
         <strong>Retro Maps</strong><br/>
         <small>A project of <a href="http://www.webosarchive.com">webOSArchive.com</a></small><br>
@@ -103,7 +103,7 @@ $zoomLevel = $config['defaultZoomLevel'];
   }  
   ?>  
 
-<p align='middle' style="margin-top: 28px"><small>Location provided by <a href='http://ipinfo.io'>IPInfo</a>, Maps provided by <a href='https://docs.microsoft.com/en-us/bingmaps/articles/accessing-the-bing-maps-rest-services-using-php'>Bing</a> | <a href="https://github.com/codepoet80/retro-maps">Host this yourself</a> | <a href='http://appcatalog.webosarchive.com/showMuseum.php?search=map+lite'>Download the webOS App</a></small></p>
+<p align='middle' style="margin-top: 28px"><small>Location provided by <a href='http://ipinfo.io'>IPInfo</a>, Maps provided by <a href='https://docs.microsoft.com/en-us/bingmaps/articles/accessing-the-bing-maps-rest-services-using-php'>Bing</a> | <a href="https://github.com/codepoet80/retro-maps">Host this yourself</a> | <a href='http://appcatalog.webosarchive.com/app/maplite'>Download the webOS App</a></small></p>
   </div>
 </body>  
 </html>
