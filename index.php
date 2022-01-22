@@ -29,18 +29,16 @@ $zoomLevel = $config['defaultZoomLevel'];
       echo file_get_contents("https://www.webosarchive.com/menu.php?content=maps");
     else
       echo file_get_contents("http://www.webosarchive.com/menu.php?content=maps");
-    ?>
-     <?php
-      $useLoc = geolocateByIP(getVisitorIP($config['hostname']), $ipinfoKey);
-  
-      if (isset($_POST['query'])) {
-        $useLoc = $_POST['query'];
-      }
+    $useLoc = geolocateByIP(getVisitorIP($config['hostname']), $ipinfoKey);
 
-      if (isset($_POST['zoom'])) {
-        $zoomLevel = $_POST['zoom'];
-      }
-      ?>
+    if (isset($_POST['query'])) {
+      $useLoc = $_POST['query'];
+    }
+
+    if (isset($_POST['zoom'])) {
+      $zoomLevel = $_POST['zoom'];
+    }
+    ?>
     <div class="content">
       <p align='middle' style='margin-top:50px;'>
         <a href='../'>
