@@ -25,10 +25,14 @@ $zoomLevel = $config['defaultZoomLevel'];
   <body>  
     <?php
     //Figure out what protocol the client wanted
-    if(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on')
+    if(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') {
       echo file_get_contents("https://www.webosarchive.com/menu.php?content=maps");
-    else
+      $REQUEST_PROTOCOL = "https";
+    }
+    else {
       echo file_get_contents("http://www.webosarchive.com/menu.php?content=maps");
+      $REQUEST_PROTOCOL = "http";
+    }
     $useLoc = geolocateByIP(getVisitorIP($config['hostname']), $ipinfoKey);
 
     if (isset($_POST['query'])) {
@@ -44,7 +48,7 @@ $zoomLevel = $config['defaultZoomLevel'];
         <a href='../'>
         <img src='icon-128.png' style="width:128px; height: 128px;" border="0"></a><br/>
         <strong>Retro Maps</strong><br/>
-        <small>A project of <a href="http://www.webosarchive.com">webOSArchive.com</a></small><br>
+        <small>A project of <a href="<?php echo $REQUEST_PROTOCOL; ?>://www.webosarchive.com">webOSArchive.com</a></small><br>
     <br/>
 
       </p>
@@ -105,7 +109,7 @@ $zoomLevel = $config['defaultZoomLevel'];
   }  
   ?>  
 
-<p align='middle' style="margin-top: 28px"><small>Location provided by <a href='http://ipinfo.io'>IPInfo</a>, Maps provided by <a href='https://docs.microsoft.com/en-us/bingmaps/articles/accessing-the-bing-maps-rest-services-using-php'>Bing</a> | <a href="https://github.com/codepoet80/retro-maps">Host this yourself</a> | <a href='http://appcatalog.webosarchive.com/app/maplite'>Download the webOS App</a></small></p>
+<p align='middle' style="margin-top: 28px"><small>Location provided by <a href='https://ipinfo.io'>IPInfo</a>, Maps provided by <a href='https://docs.microsoft.com/en-us/bingmaps/articles/accessing-the-bing-maps-rest-services-using-php'>Bing</a> | <a href="https://github.com/codepoet80/retro-maps">Host this yourself</a> | <a href='<?php echo $REQUEST_PROTOCOL; ?>://appcatalog.webosarchive.com/app/maplite'>Download the webOS App</a></small></p>
   </div>
 </body>  
 </html>
