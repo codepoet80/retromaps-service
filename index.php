@@ -109,7 +109,7 @@ $zoomLevel = $config['defaultZoomLevel'];
   }  
   ?>  
 
-<p align='middle' style="margin-top: 28px"><small>Location provided by <a href='https://ipinfo.io'>IPInfo</a>, Maps provided by <a href='https://docs.microsoft.com/en-us/bingmaps/articles/accessing-the-bing-maps-rest-services-using-php'>Bing</a> | <a href="https://github.com/codepoet80/retro-maps">Host this yourself</a> | <a href='<?php echo $REQUEST_PROTOCOL; ?>://appcatalog.webosarchive.com/app/maplite'>Download the webOS App</a></small></p>
+<p align='middle' style="margin-top: 28px"><small>Location provided by <a href='https://ipinfo.io'>IPInfo</a>, Maps provided by <a href='https://docs.microsoft.com/en-us/bingmaps/articles/accessing-the-bing-maps-rest-services-using-php'>Bing</a> | <a href="https://github.com/codepoet80/retromaps-service">Host this yourself</a> | <a href='<?php echo $REQUEST_PROTOCOL; ?>://appcatalog.webosarchive.com/app/maplite'>Download the webOS App</a></small></p>
   </div>
 </body>  
 </html>
