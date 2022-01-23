@@ -9,7 +9,7 @@ $zoomLevel = $config['defaultZoomLevel'];
 ?>
 <html>  
   <head>  
-    <title>webOS Maps Test</title>
+    <title>Retro Maps</title>
     <link rel="shortcut icon" sizes="256x256" href="icon-256.png">
     <link rel="shortcut icon" sizes="196x196" href="icon-196.png">
     <link rel="shortcut icon" sizes="128x128" href="icon-128.png">
