@@ -21,8 +21,13 @@ $zoomLevel = $config['defaultZoomLevel'];
     <meta name="apple-mobile-web-app-status-bar-style" content="white" />
     
     <link rel="stylesheet" href="style.css">
+    <script>
+      function findScreenSize() {
+        document.getElementById("screenSize").value = window.innerWidth;
+      }
+    </script>
   </head>  
-  <body>  
+  <body onload="findScreenSize()">  
     <?php
     //Figure out what protocol the client wanted
     if(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') {
@@ -41,6 +46,11 @@ $zoomLevel = $config['defaultZoomLevel'];
 
     if (isset($_POST['zoom'])) {
       $zoomLevel = $_POST['zoom'];
+    }
+
+    if (isset($_POST['screenSize']) && $_POST['screenSize'] != "") {
+      $mapSize = round((int)$_POST['screenSize'] * 0.7);
+      $mapSize = $mapSize . "," . $mapSize;
     }
     ?>
     <div class="content">
@@ -82,7 +92,8 @@ $zoomLevel = $config['defaultZoomLevel'];
                 <tr><td>Custom API Key: </td><td><input type="text" name="key" value=""> <i>Leave blank to use test key</i></td></tr> 
           -->
           <tr><td colspan="3" align="center"><input type="submit" value="Update Map"></td></tr>
-        </table>  
+        </table> 
+        <input type="hidden" name="screenSize" id="screenSize" style="display:none"/> 
     </form>  
     
   <?php  
