@@ -10,6 +10,8 @@ Get your Bing Maps API credentials here: https://www.microsoft.com/en-us/maps/cr
 
 Get your IPInfo token here: https://ipinfo.io/
 
+Create a `cache` folder (or symlink) that the web user can write to
+
 # Prerequisites
 
 * Apache (or other web server) with PHP 7
