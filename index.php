@@ -58,7 +58,7 @@ $zoomLevel = $config['defaultZoomLevel'];
         <a href='../'>
         <img src='icon-128.png' style="width:128px; height: 128px;" border="0"></a><br/>
         <strong>Retro Maps</strong><br/>
-        <small>A project of <a href="<?php echo $REQUEST_PROTOCOL; ?>://www.webosarchive.com">webOSArchive.com</a></small><br>
+        <small>A project of <a href="<?php echo $REQUEST_PROTOCOL; ?>://www.webosarchive.org">webOS Archive</a></small><br>
     <br/>
 
       </p>
