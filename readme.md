@@ -1,6 +1,6 @@
 # Overview
 
-A PHP service, leveraging Bing Maps and IPInfo.org to provide a podcast directory, and a proxy service, for retro devices that are capable of playing rendering images, but may not be able to get a geofix, load tiles or render vectors.
+A PHP service, leveraging Bing Maps and IPInfo.org to provide a podcast directory, and a proxy service, for retro devices that are capable of displaying images, but may not be able to get a geofix, load tiles or render vectors.
 
 # Requirements
 
